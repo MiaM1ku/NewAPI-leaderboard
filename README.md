@@ -1,27 +1,31 @@
-# NewAPI Leaderboard
+# 🏆 NewAPI Leaderboard
 
-NewAPI 用量统计报告工具 —— 自动从 [NewAPI](https://github.com/Calcium-Ion/new-api) 后台拉取模型与用户用量数据，生成排行榜式的中文报告，并可通过 Webhook 推送。
+> 啊朋友你太坏了啊
+> 我 我刚买的 Token 怎么没了！
+> 到底是谁这么能 Vibe Coding……！
+> 我一定要找到你！
 
-## ✨ 功能
+你的 [NewAPI](https://github.com/Calcium-Ion/new-api) 站点里，到底是谁在疯狂消耗 Token？哪个模型最烧钱？
 
-- **多周期报告**：支持 `daily`（每日）、`weekly`（每周）、`monthly`（每月）三种模式
-- **模型用量 Top 5**：按消费金额排序，展示请求次数、Token 用量、消费金额
-- **用户用量 Top 5**：按消费金额排序，展示请求次数、Token 用量、消费金额
-- **用户模型明细**：为 Top 5 用户展示各自消费前 3 的模型，包含输入/输出/缓存 Token 细分
-- **模型别名归一化**：自动从渠道的 `model_mapping` 配置中提取别名映射，合并同一模型的不同名称
-- **Webhook 推送**：可选配置 Webhook URL，自动将报告推送至企业微信、飞书、Discord 等
+**NewAPI Leaderboard** 帮你一键生成用量排行榜，揪出那个 Vibe Coding 的家伙 🕵️
 
-## 📋 前置要求
+## ✨ 功能亮点
 
-- Python 3.9+
-- 一个可访问的 NewAPI 实例（需管理员账号）
+- 📊 **多周期报告** — 支持每日 / 每周 / 每月三种统计模式
+- 🏆 **模型 Top 5** — 哪个模型最烧钱，一目了然
+- 👥 **用户 Top 5** — 谁在疯狂用量，无处遁形
+- 🔍 **用户模型明细** — 每个用户消费了哪些模型，输入 / 输出 / 缓存 Token 全部细分
+- 🔄 **模型别名归一化** — 自动从渠道 `model_mapping` 合并同一模型的不同别名
+- 🔔 **Webhook 推送** — 报告自动推送至企业微信、飞书、Discord 等群组
 
 ## 🚀 快速开始
+
+只需两步：下载 `main.py`，配置 `.env`，即可使用！
 
 ### 1. 克隆项目
 
 ```bash
-git clone https://github.com/your-username/NewAPI-leaderboard.git
+git clone https://github.com/MiaM1ku/NewAPI-leaderboard.git
 cd NewAPI-leaderboard
 ```
 
@@ -33,24 +37,22 @@ pip install requests python-dotenv
 
 ### 3. 配置环境变量
 
-复制示例配置文件并填入实际值：
-
 ```bash
 cp .env.example .env
 ```
 
-编辑 `.env` 文件：
+编辑 `.env`：
 
 ```env
 BASE_URL=https://YOUR_NEWAPI_URL
 NEWAPI_USERNAME=YOUR_USERNAME
 NEWAPI_PASSWORD=YOUR_PASSWORD
-WEBHOOK_URL=YOUR_WEBHOOK_URL
-WEBHOOK_AUTHORIZATION=Bearer YOUR_WEBHOOK_AUTHORIZATION_TOKEN
+WEBHOOK_URL=YOUR_WEBHOOK_URL                          # 可选
+WEBHOOK_AUTHORIZATION=Bearer YOUR_WEBHOOK_AUTH_TOKEN   # 可选
 ```
 
 | 变量 | 说明 | 必填 |
-|------|------|------|
+|------|------|:----:|
 | `BASE_URL` | NewAPI 实例地址（不带尾部 `/`） | ✅ |
 | `NEWAPI_USERNAME` | NewAPI 管理员用户名 | ✅ |
 | `NEWAPI_PASSWORD` | NewAPI 管理员密码 | ✅ |
@@ -71,6 +73,8 @@ python main.py monthly
 ```
 
 ## 📊 报告示例
+
+生成的报告长这样，支持 Webhook 直接推送到群里 👇
 
 ```
 📊 每日用量报告 — 2026-04-09
@@ -103,7 +107,7 @@ python main.py monthly
 
 ## ⏰ 定时执行
 
-可配合 cron（Linux/macOS）或任务计划程序（Windows）定时运行：
+配合 cron（Linux/macOS）或任务计划程序（Windows）定时运行，每天自动出报告：
 
 ```bash
 # 每天早上 8:00 执行每日报告
@@ -116,17 +120,6 @@ python main.py monthly
 0 8 1 * * cd /path/to/NewAPI-leaderboard && python main.py monthly
 ```
 
-## 📁 项目结构
-
-```
-NewAPI-leaderboard/
-├── main.py          # 主程序
-├── .env.example     # 环境变量示例
-├── .env             # 环境变量配置（不纳入版本控制）
-├── .gitignore       # Git 忽略规则
-└── README.md        # 项目说明
-```
-
 ## 🔧 工作原理
 
 1. 使用管理员账号登录 NewAPI，获取会话
@@ -137,6 +130,17 @@ NewAPI-leaderboard/
 6. 如配置了 Webhook，自动推送报告
 
 > **汇率**：1 USD = 500,000 Quota（NewAPI 内部额度单位）
+
+## 📁 项目结构
+
+```
+NewAPI-leaderboard/
+├── main.py          # 主程序，就这一个文件
+├── .env.example     # 环境变量示例
+├── .env             # 你的配置（不纳入版本控制）
+├── .gitignore
+└── README.md
+```
 
 ## 📄 License
 
